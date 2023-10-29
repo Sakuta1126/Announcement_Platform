@@ -32,6 +32,10 @@ namespace Announcement_Platform
             Task.ExecuteReader();
             Task = new SqliteCommand("CREATE TABLE IF NOT EXISTS Langueage(Id INTEGER PRIMARY KEY AUTOINCREMENT,Lang VARCHAR(30),LevelofLang VARCHAR(2)", conn);
             Task.ExecuteReader();
+            Task = new SqliteCommand("CREATE TABLE IF NOT EXISTS Skills(Id INTEGER PRIMARY KEY AUTOINCREMENT,Ability VARCHAR(100)", conn);
+            Task.ExecuteReader();
+            Task = new SqliteCommand("CREATE TABLE IF NOT EXISTS Links(Id INTEGER PRIMARY KEY AUTOINCREMENT,Link VARCHAR(100)", conn);
+            Task.ExecuteReader();
 
         }
     }
