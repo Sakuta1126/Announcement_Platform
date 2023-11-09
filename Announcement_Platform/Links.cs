@@ -1,20 +1,17 @@
-﻿using Microsoft.Data.Sqlite;
+﻿using SQLite;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using SQLitePCL;
-using System.IO;
-using System.Windows;
-using System.Windows.Controls;
-
 
 namespace Announcement_Platform
 {
-    public class DataBase
+    public class Links
     {
+        [AutoIncrement,PrimaryKey]
+        public int Id { get; set; }
+        public string Link { get; set; }
 
-    
     }
 }

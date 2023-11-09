@@ -7,6 +7,75 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="1080" Width="1920">
     <Grid>
+        <Grid x:Name="loading" Visibility="Hidden">
+            <!--daj visible potem-->
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+            <Image x:Name="loadingImage" Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Center"  Height="400" Width="400" />
+            <ProgressBar x:Name="progressBar" Grid.Row="1" Height="30" VerticalAlignment="Top" />
+            <Label x:Name="welcome" VerticalAlignment="Top" Content="Announcement System Platform" FontSize="50" FontWeight="Bold" HorizontalAlignment="Center" ></Label>
+          
+        </Grid>
+        <StackPanel x:Name="AccChoose" Orientation="Vertical" VerticalAlignment="Center" Height="1080" Background="LightBlue" Visibility="Hidden">
 
+            <Label Content="Choose your account permissions" FontSize="40" FontWeight="Bold"  HorizontalAlignment="Center" Margin="40" FontStyle="Oblique"></Label>
+            <Button x:Name="AdminAcc" Height="200" Width="300" Content="Admin" FontSize="40" Background="Purple" HorizontalAlignment="Center" Margin="10" >
+                <Button.Resources>
+                    <Style TargetType="Border">
+                        <Setter Property="CornerRadius" Value="40"></Setter>
+                    </Style>
+                </Button.Resources>
+            </Button>
+            <Button x:Name="UserAcc" Height="200" Width="300" HorizontalAlignment="Center" Margin="10" Background="Purple" Content="User" FontSize="40">
+                <Button.Resources>
+                    <Style TargetType="Border">
+                        <Setter Property="CornerRadius" Value="40"></Setter>
+                    </Style>
+                </Button.Resources>
+            </Button>
+        </StackPanel>
+        <Grid x:Name="UserSignUp" Visibility="Visible">
+            <Grid.Background>
+                <ImageBrush ImageSource="AccChoose.jpg"></ImageBrush>
+            </Grid.Background>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
+            </Grid.RowDefinitions>
+            <Label Content="User SignUp" FontSize="40" FontWeight="Bold" Grid.ColumnSpan="2" HorizontalAlignment="Center" Foreground="Azure"></Label>
+            <Label Grid.Row="1" Grid.Column="0" Content="Name:" FontSize="50" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="Azure" ></Label>
+            <TextBox Grid.Row="1" Grid.Column="1" Width="800" x:Name="Name"></TextBox>
+            <Label Grid.Row="2" Grid.Column="0" Content="Surname:" FontSize="50" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="Azure" ></Label>
+            <TextBox Grid.Row="2" Grid.Column="1" Width="800" x:Name="Surname"></TextBox>
+            <Label Grid.Row="3" Grid.Column="0" Content="BirthDate:" FontSize="50" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="Azure" ></Label>
+            <DatePicker Grid.Row="3" Grid.Column="1" Height="20"></DatePicker>
+            <Label Grid.Row="4" Grid.Column="0" Content="Email:" FontSize="50" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="Azure" ></Label>
+            <Label Grid.Row="5" Grid.Column="0" Content="PhoneNumber:" FontSize="50" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="Azure" ></Label>
+            <Label Grid.Row="6" Grid.Column="0" Content="ProfilePicture:" FontSize="50" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="Azure" ></Label>
+            <Label Grid.Row="7" Grid.Column="0" Content="ProfilePicture:" FontSize="50" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="Azure" ></Label>
+            <Label Grid.Row="8" Grid.Column="0" Content="Residence Address:" FontSize="50" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="Azure" ></Label>
+            <Button Grid.Row="9" Grid.ColumnSpan="2" Width="400" Content="SignUp" FontSize="40" Background="MediumPurple">
+                <Button.Resources>
+                    <Style TargetType="Border">
+                        <Setter Property="CornerRadius" Value="40"></Setter>
+                    </Style>
+                </Button.Resources>
+            </Button>
+        </Grid>
     </Grid>
+
 </Window>
