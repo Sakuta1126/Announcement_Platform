@@ -9,10 +9,16 @@
 
   <ItemGroup>
     <None Remove="AccChoose.jpg" />
+    <None Remove="download.jpg" />
+    <None Remove="Projekt.mp4" />
   </ItemGroup>
 
   <ItemGroup>
     <Content Include="AccChoose.jpg" />
+    <Content Include="download.jpg" />
+    <Content Include="Projekt.mp4">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
 
   <ItemGroup>

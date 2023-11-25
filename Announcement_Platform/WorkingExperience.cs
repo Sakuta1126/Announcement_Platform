@@ -17,6 +17,7 @@ namespace Announcement_Platform
         public DateTime WorkingPeriodStart { get; set; }
         public DateTime WorkingPeriodEnd { get; set; }
         public string Duties { get; set; }
+      
 
 
     }
