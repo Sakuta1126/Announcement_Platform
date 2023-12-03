@@ -18,8 +18,7 @@ namespace Announcement_Platform
         public int PhoneNumber { get; set; }
         public string PFP { get; set; }
         public string ResidenceAddress { get; set; }
-        public Boolean IsAdmin { get; set; } 
-        public string Login { get; set; }
-        public string Password { get; set; }
+        public string Summary { get; set; }
+
     }
 }

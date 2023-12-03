@@ -6,7 +6,50 @@
         xmlns:local="clr-namespace:Announcement_Platform"
         mc:Ignorable="d"
         Title="MainWindow" Height="1080" Width="1920">
+    <Window.Resources>
+        <Style TargetType="TextBox">
+            <Setter Property="FontSize" Value="18"/>
+            <Setter Property="Padding" Value="5"/>
+            <Setter Property="Margin" Value="5"/>
+            <Setter Property="BorderBrush" Value="DarkSlateGray"/>
+            <Setter Property="BorderThickness" Value="2"/>
+            <Setter Property="Background" Value="White"/>
+            <Setter Property="Foreground" Value="Black"/>
+        </Style>
+
+        <Style TargetType="Button">
+            <Setter Property="FontSize" Value="20"/>
+            <Setter Property="Padding" Value="10"/>
+            <Setter Property="Margin" Value="5"/>
+            <Setter Property="BorderBrush" Value="DarkSlateGray"/>
+            <Setter Property="BorderThickness" Value="2"/>
+            <Setter Property="Background" Value="Green"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Border Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Padding="{TemplateBinding Padding}">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="DarkGoldenrod"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+        <Style TargetType="Label">
+            <Setter Property="FontSize" Value="24"/>
+            <Setter Property="Margin" Value="5"/>
+            <Setter Property="Foreground" Value="White"/>
+        </Style>
+
+    </Window.Resources>
+
     <Grid>
+
         <Grid x:Name="RegisterView" Visibility="Hidden">
             <Grid.Background>
                 <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
@@ -24,26 +67,8 @@
                         <ScaleTransform ScaleX="4" ScaleY="4" />
                     </CheckBox.LayoutTransform>
                 </CheckBox>
-                <Button Content="Zarejestruj" x:Name="RegisterBtn" Click="RegisterBtn_Click" Width="200" Height="60" FontSize="38" HorizontalAlignment="Center" Background="Transparent">
-                    <Button.Style>
-                        <Style TargetType="{x:Type Button}">
-                            <Setter Property="Background" Value="Green"/>
-                            <Setter Property="Template">
-                                <Setter.Value>
-                                    <ControlTemplate TargetType="{x:Type Button}">
-                                        <Border Background="{TemplateBinding Background}">
-                                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                                        </Border>
-                                    </ControlTemplate>
-                                </Setter.Value>
-                            </Setter>
-                            <Style.Triggers>
-                                <Trigger Property="IsMouseOver" Value="True">
-                                    <Setter Property="Background" Value="DarkGoldenrod"/>
-                                </Trigger>
-                            </Style.Triggers>
-                        </Style>
-                    </Button.Style>
+                <Button Content="Zarejestruj" x:Name="RegisterBtn" Click="RegisterBtn_Click" Width="200" Height="60" FontSize="38" HorizontalAlignment="Center" Background="Transparent" Visibility="Visible">
+
                 </Button>
             </StackPanel>
         </Grid>
@@ -62,7 +87,7 @@
                 <Button Content="Zaloguj" x:Name="LoginBtn" Click="LoginBtn_Click" Width="200" Height="60" FontSize="38" HorizontalAlignment="Center"/>
             </StackPanel>
         </Grid>
-        <Grid x:Name="MainSiteView" Visibility="Visible">
+        <Grid x:Name="MainSiteView"  Visibility="Visible">
 
             <Grid.RowDefinitions>
                 <RowDefinition></RowDefinition>
@@ -76,120 +101,141 @@
             </Grid.RowDefinitions>
             <Label Content="Announcement_Platform" FontSize="40" Foreground="Black" FontFamily="Georgia" HorizontalAlignment="Left" Grid.Row="0" VerticalAlignment="Top" Margin="20,10,0,0"></Label>
             <StackPanel Orientation="Horizontal" Grid.Row="0" HorizontalAlignment="Right">
-                <Button Content="Announcements" x:Name="AnnouncementNav" Click="AnnouncementNav_Click" HorizontalAlignment="Right" Width="200" Height="50" Background="Transparent" Foreground="Black" FontSize="20" BorderBrush="Transparent">
-                    <Button.Style>
-                        <Style TargetType="{x:Type Button}">
-                            <Setter Property="Background" Value="Green"/>
-                            <Setter Property="Template">
-                                <Setter.Value>
-                                    <ControlTemplate TargetType="{x:Type Button}">
-                                        <Border Background="{TemplateBinding Background}">
-                                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                                        </Border>
-                                    </ControlTemplate>
-                                </Setter.Value>
-                            </Setter>
-                            <Style.Triggers>
-                                <Trigger Property="IsMouseOver" Value="True">
-                                    <Setter Property="Background" Value="DarkGoldenrod"/>
-                                </Trigger>
-                            </Style.Triggers>
-                        </Style>
-                    </Button.Style>
-                </Button>
 
-                <Button Content="Log in" x:Name="LogInNav" Click="LogInNav_Click"  HorizontalAlignment="Right" Width="200" Height="50" Background="Transparent" Foreground="Black" FontSize="20" BorderBrush="Transparent">
-                    <Button.Style>
-                        <Style TargetType="{x:Type Button}">
-                            <Setter Property="Background" Value="Green"/>
-                            <Setter Property="Template">
-                                <Setter.Value>
-                                    <ControlTemplate TargetType="{x:Type Button}">
-                                        <Border Background="{TemplateBinding Background}">
-                                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                                        </Border>
-                                    </ControlTemplate>
-                                </Setter.Value>
-                            </Setter>
-                            <Style.Triggers>
-                                <Trigger Property="IsMouseOver" Value="True">
-                                    <Setter Property="Background" Value="DarkGoldenrod"/>
-                                </Trigger>
-                            </Style.Triggers>
-                        </Style>
-                    </Button.Style>
+
+                <Button Content="Log in" x:Name="LogInNav" Click="LogInNav_Click"  HorizontalAlignment="Right" Width="200" Height="50" Background="Transparent" Foreground="Black" FontSize="20" BorderBrush="Transparent" >
+
                 </Button>
-                <Button Content="Register" x:Name="RegisterNav" Click="RegisterNav_Click"  HorizontalAlignment="Right" Width="200" Height="50" Background="Transparent" Foreground="Black" FontSize="20" BorderBrush="Transparent">
-                    <Button.Style>
-                        <Style TargetType="{x:Type Button}">
-                            <Setter Property="Background" Value="Green"/>
-                            <Setter Property="Template">
-                                <Setter.Value>
-                                    <ControlTemplate TargetType="{x:Type Button}">
-                                        <Border Background="{TemplateBinding Background}">
-                                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                                        </Border>
-                                    </ControlTemplate>
-                                </Setter.Value>
-                            </Setter>
-                            <Style.Triggers>
-                                <Trigger Property="IsMouseOver" Value="True">
-                                    <Setter Property="Background" Value="DarkGoldenrod"/>
-                                </Trigger>
-                            </Style.Triggers>
-                        </Style>
-                    </Button.Style>
+                <Button Content="Register" x:Name="RegisterNav" Click="RegisterNav_Click"  HorizontalAlignment="Right" Width="200" Height="50" Background="Transparent" Foreground="Black" FontSize="20" BorderBrush="Transparent" >
+
                 </Button>
                 <Button Content="Profile" x:Name="ProfileNav" Click="ProfileNav_Click"  HorizontalAlignment="Right" Width="200" Height="50" Background="Transparent" Foreground="Black" FontSize="20" BorderBrush="Transparent" Visibility="Hidden">
-                    <Button.Style>
-                        <Style TargetType="{x:Type Button}">
-                            <Setter Property="Background" Value="Green"/>
-                            <Setter Property="Template">
-                                <Setter.Value>
-                                    <ControlTemplate TargetType="{x:Type Button}">
-                                        <Border Background="{TemplateBinding Background}">
-                                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                                        </Border>
-                                    </ControlTemplate>
-                                </Setter.Value>
-                            </Setter>
-                            <Style.Triggers>
-                                <Trigger Property="IsMouseOver" Value="True">
-                                    <Setter Property="Background" Value="DarkGoldenrod"/>
-                                </Trigger>
-                            </Style.Triggers>
-                        </Style>
-                    </Button.Style>
-                </Button>
-                <Button Content="Log Out" x:Name="LogOutBtn" Click="LogOutBtn_Click" HorizontalAlignment="Right" Width="200" Height="50" Background="Transparent" Foreground="Black" FontSize="20" BorderBrush="Transparent" Visibility="Hidden">
-                    <Button.Style>
-                        <Style TargetType="{x:Type Button}">
-                            <Setter Property="Background" Value="Green"/>
-                            <Setter Property="Template">
-                                <Setter.Value>
-                                    <ControlTemplate TargetType="{x:Type Button}">
-                                        <Border Background="{TemplateBinding Background}">
-                                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                                        </Border>
-                                    </ControlTemplate>
-                                </Setter.Value>
-                            </Setter>
-                            <Style.Triggers>
-                                <Trigger Property="IsMouseOver" Value="True">
-                                    <Setter Property="Background" Value="DarkGoldenrod"/>
-                                </Trigger>
-                            </Style.Triggers>
-                        </Style>
-                    </Button.Style>
-                </Button>
-            </StackPanel>
-            <Label Content="Announcements" FontSize="40" Foreground="Black" FontFamily="Georgia" HorizontalAlignment="Center" Grid.Row="1" VerticalAlignment="Center" Margin="20,10,0,0"></Label>
-            <ScrollViewer Grid.Row="2" Grid.RowSpan="6">
-                <StackPanel>
-                    <MediaElement Name="VideoControl" Width="1000" Height ="600"
-                  Source="Projekt.mp4"  UnloadedBehavior="Play" ></MediaElement>
-                </StackPanel>
 
+                </Button>
+
+                <Button Content="Log Out" x:Name="LogOutBtn" Click="LogOutBtn_Click" HorizontalAlignment="Right" Width="200" Height="50" Background="Transparent" Foreground="Black" FontSize="20" BorderBrush="Transparent" Visibility="Hidden">
+
+                </Button>
+                <Button Content="Announcements" x:Name="AnnouncementNav" Click="AnnouncementNav_Click" HorizontalAlignment="Right" Width="200" Height="50" Background="Transparent" Foreground="Black" FontSize="20" BorderBrush="Transparent" Visibility="Hidden"></Button>
+                <Button Content="AddAnnouncement" x:Name="AddAnno" Click="AddAnno_Click" HorizontalAlignment="Right" Width="200" Height="50" Background="Transparent" Foreground="Black" FontSize="20" BorderBrush="Transparent" Visibility="Hidden" >
+
+                </Button>
+                <Button Content="Applied" x:Name="Applied" Click="Applied_Click" HorizontalAlignment="Right" Width="200" Height="50" Background="Transparent" Foreground="Black" FontSize="20" BorderBrush="Transparent" Visibility="Hidden" >
+
+                </Button>
+
+            </StackPanel>
+
+        </Grid>
+        <Grid x:Name="AppliedAnno" Visibility="Hidden">
+            <Grid.RowDefinitions>
+                <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
+            </Grid.RowDefinitions>
+            <Label Content="Applied Announcements"  FontSize="40" Foreground="Black" FontFamily="Georgia" HorizontalAlignment="Center" Grid.Row="1" VerticalAlignment="Center" Margin="20,10,0,0" ></Label>
+            <ScrollViewer Grid.Row="2" Grid.RowSpan="6" BorderBrush="DarkSlateGray" BorderThickness="2" VerticalScrollBarVisibility="Auto">
+                <ItemsControl x:Name="AppliedItems" ItemsSource="{Binding AppliedAnnouncements}">
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                       
+                            <Grid Background="DarkSlateGray" Margin="10">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto" />
+                                    <ColumnDefinition Width="*" />
+                                </Grid.ColumnDefinitions>
+
+                               
+                                <Border Background="Gray" CornerRadius="10">
+                                    <StackPanel Margin="10">
+                                        <TextBlock Text="Poszukiwany:" Foreground="White" FontSize="26" />
+                                        <TextBlock Text="{Binding PositionName}" Foreground="White" FontWeight="Bold" Margin="0,5,0,0" FontSize="20" />
+                                    </StackPanel>
+                                </Border>
+
+                             
+                                <Border Grid.Column="1" Margin="10" Background="Purple" CornerRadius="10">
+                                    <StackPanel>
+                                        <TextBlock Text="Company:" Foreground="White" TextAlignment="Center" FontSize="26" />
+                                        <TextBlock Text="{Binding Company}" Foreground="White" FontWeight="Bold" FontSize="20" TextAlignment="Center" Margin="0,5,0,0" />
+
+                                     
+                                        <TextBlock Text="Category:" Foreground="White" TextAlignment="Center" FontSize="26" />
+                                        <TextBlock Text="{Binding Category}" Foreground="White" FontWeight="Bold" FontSize="20" TextAlignment="Center" Margin="0,5,0,0" />
+
+                                        <TextBlock Text="Requirements:" Foreground="White" TextAlignment="Center" FontSize="26" />
+                                        <TextBlock Text="{Binding Requirements}" Foreground="White" FontWeight="Bold" FontSize="20" TextAlignment="Center" Margin="0,5,0,0" />
+
+                                        <Button Content="Zobacz" x:Name="ViewApplied" Click="ViewApplied_Click" HorizontalAlignment="Center" Margin="0,10,0,0"/>
+                                        
+                                    </StackPanel>
+                                </Border>
+                            </Grid>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+            </ScrollViewer>
+
+        </Grid>
+        <Grid x:Name="announcements" Visibility="Hidden">
+            <Grid.RowDefinitions>
+                <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
+            </Grid.RowDefinitions>
+            <Label Content="Announcements" x:Name="anc" FontSize="40" Foreground="Black" FontFamily="Georgia" HorizontalAlignment="Center" Grid.Row="1" VerticalAlignment="Center" Margin="20,10,0,0" ></Label>
+
+
+            <ScrollViewer Grid.Row="2" Grid.RowSpan="6" BorderBrush="DarkSlateGray" BorderThickness="2" VerticalScrollBarVisibility="Auto">
+                <ItemsControl x:Name="YourItemsControl" ItemsSource="{Binding Announcements}">
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                           
+                            <Grid Background="DarkSlateGray" Margin="10">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto" />
+                                    <ColumnDefinition Width="*" />
+                                </Grid.ColumnDefinitions>
+
+                              
+                                <Border Background="Gray" CornerRadius="10">
+                                    <StackPanel Margin="10">
+                                        <TextBlock Text="Poszukiwany:" Foreground="White" FontSize="26" />
+                                        <TextBlock Text="{Binding PositionName}" Foreground="White" FontWeight="Bold" Margin="0,5,0,0" FontSize="20" />
+                                    </StackPanel>
+                                </Border>
+
+                              
+                                <Border Grid.Column="1" Margin="10" Background="Purple" CornerRadius="10">
+                                    <StackPanel>
+                                        <TextBlock Text="Company:" Foreground="White" TextAlignment="Center" FontSize="26" />
+                                        <TextBlock Text="{Binding Company}" Foreground="White" FontWeight="Bold" FontSize="20" TextAlignment="Center" Margin="0,5,0,0" />
+
+                                   
+                                        <TextBlock Text="Category:" Foreground="White" TextAlignment="Center" FontSize="26" />
+                                        <TextBlock Text="{Binding Category}" Foreground="White" FontWeight="Bold" FontSize="20" TextAlignment="Center" Margin="0,5,0,0" />
+
+                                        <TextBlock Text="Requirements:" Foreground="White" TextAlignment="Center" FontSize="26" />
+                                        <TextBlock Text="{Binding Requirements}" Foreground="White" FontWeight="Bold" FontSize="20" TextAlignment="Center" Margin="0,5,0,0" />
+
+                                        <Button Content="Zobacz" x:Name="ViewDetails" Click="ViewDetails_Click" HorizontalAlignment="Center" Margin="0,10,0,0"/>
+                                        <Button Content="Usun" x:Name="DeleteAnn"  Click="DeleteAnn_Click" HorizontalAlignment="Center" Margin="0,10,0,0" />
+                                    </StackPanel>
+                                </Border>
+                            </Grid>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
             </ScrollViewer>
         </Grid>
         <Grid x:Name="loading" Visibility="Hidden">
@@ -200,55 +246,112 @@
             </Grid.RowDefinitions>
             <Image x:Name="loadingImage" Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Center"  Height="400" Width="400" />
             <ProgressBar x:Name="progressBar" Grid.Row="1" Height="30" VerticalAlignment="Top" />
-            <Label x:Name="welcome" VerticalAlignment="Top" Content="Announcement System Platform" FontSize="50" FontWeight="Bold" HorizontalAlignment="Center" ></Label>
+            <Label x:Name="welcome" VerticalAlignment="Top" Content="Announcement System Platform" FontSize="50" FontWeight="Bold" Foreground="Black" HorizontalAlignment="Center" ></Label>
 
         </Grid>
-
-
         <Grid x:Name="Profile_Informations" Visibility="Hidden">
-
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
-                <RowDefinition></RowDefinition>
+                <RowDefinition ></RowDefinition>
                 <RowDefinition></RowDefinition>
                 <RowDefinition></RowDefinition>
                 <RowDefinition></RowDefinition>
                 <RowDefinition></RowDefinition>
             </Grid.RowDefinitions>
 
-
-
-
             <Grid Grid.Row="1" Margin="20">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="Auto"/>
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
-
-
-                <Image Source="download.jpg" Stretch="UniformToFill" Height="460" Width="460" Margin="0,0,40,0" ClipToBounds="True">
+                <TextBox x:Name="Photopath" Width="400" Height="30" Margin="0,697,0,240" HorizontalAlignment="Center" Visibility="Hidden"/>
+                <Button Content="Choose Photo" Click="ChooseImageBtn_Click" FontSize="25" Background="Transparent" Foreground="Black" Margin="80,149,92,719"/>
+                <Image x:Name="ProfileImage" Stretch="UniformToFill" Height="460" Width="460" Margin="0,0,40,0" ClipToBounds="True">
                     <Image.Clip>
                         <EllipseGeometry Center="220,220" RadiusX="160" RadiusY="160"/>
                     </Image.Clip>
                 </Image>
 
+                <StackPanel Grid.Column="1" Orientation="Vertical" Grid.RowSpan="6" Margin="0,-10,0,0">
+                    <WrapPanel HorizontalAlignment="Center" >
+                        <Border BorderBrush="Black" BorderThickness="2" Margin="0,0,10,0">
+                            <StackPanel >
+                                <Label Content="Name " FontSize="40" HorizontalAlignment="Center" Foreground="Black"/>
+                                <TextBox x:Name="Name" Width="300" FontSize="24" Foreground="Black"/>
+                            </StackPanel>
+                        </Border>
 
-                <StackPanel Grid.Column="1" Orientation="Vertical" Grid.RowSpan="6">
-                    <Label Content="Name " FontSize="40" HorizontalAlignment="Center" ></Label>
-                    <TextBox x:Name="Name" Width="800" FontSize="24" Margin="0,0,0,10"/>
-                    <Label Content="Surname " FontSize="40" HorizontalAlignment="Center" ></Label>
-                    <TextBox x:Name="Surname" Width="800" FontSize="24" Margin="0,0,0,10"/>
-                    <Label Content="BirthDate " FontSize="40" HorizontalAlignment="Center" ></Label>
-                    <DatePicker x:Name="BirthDate" Width="800" FontSize="24" Margin="0,0,0,10"/>
-                    <Label Content="PhoneNumber " FontSize="40" HorizontalAlignment="Center" ></Label>
-                    <TextBox x:Name="PhoneNumber" Width="800" FontSize="24" Margin="0,0,0,10"/>
-                    <Label Content="ResidenceAddress " FontSize="40" HorizontalAlignment="Center" ></Label>
-                    <TextBox x:Name="ResidenceAddress" Width="800" FontSize="24" Margin="0,0,0,10"/>
-                    <Button Content="Confirm" x:Name="ConfirmProfileBtn" Click="ConfirmProfileBtn_Click" Height="400" FontSize="50" Background="AliceBlue" Width="800"></Button>
+                        <Border BorderBrush="Black" BorderThickness="2" Margin="0,0,10,0">
+                            <StackPanel>
+                                <Label Content="Surname " FontSize="40" HorizontalAlignment="Center" Foreground="Black"/>
+                                <TextBox x:Name="Surname" Width="300" FontSize="24" Foreground="Black"/>
+                            </StackPanel>
+                        </Border>
+
+                        <Border BorderBrush="Black" BorderThickness="2" Margin="0,0,10,0">
+                            <StackPanel>
+                                <Label Content="BirthDate " FontSize="40" HorizontalAlignment="Center" Foreground="Black"/>
+                                <DatePicker x:Name="BirthDate" Width="300" FontSize="24" Foreground="Black"/>
+                            </StackPanel>
+                        </Border>
+                    </WrapPanel>
+                    <Border BorderBrush="Black" BorderThickness="2" Margin="0,0,0,0">
+                        <StackPanel>
+                            <Label Content="Email " FontSize="40" HorizontalAlignment="Center" Foreground="Black"/>
+                            <TextBox x:Name="Email" Width="300" FontSize="24" Foreground="Black"/>
+                        </StackPanel>
+                    </Border>
+
+                    <Border BorderBrush="Black" BorderThickness="2" Margin="0,0,0,0">
+                        <StackPanel>
+                            <Label Content="PhoneNumber " FontSize="40" HorizontalAlignment="Center" Foreground="Black"/>
+                            <TextBox x:Name="PhoneNumber" Width="300" FontSize="24" Foreground="Black"/>
+                        </StackPanel>
+                    </Border>
+
+                    <Border BorderBrush="Black" BorderThickness="2" Margin="0,0,0,0">
+                        <StackPanel>
+                            <Label Content="ResidenceAddress " FontSize="40" HorizontalAlignment="Center" Foreground="Black"/>
+                            <TextBox x:Name="ResidenceAddress" Width="300" FontSize="24" Foreground="Black"/>
+                        </StackPanel>
+                    </Border>
+                    
+                    <Border BorderBrush="Black" BorderThickness="2" Margin="0,0,0,0">
+                    <StackPanel>
+                        <Label Content="Summary " FontSize="40" HorizontalAlignment="Center" Foreground="Black"/>
+                            <TextBox x:Name="Summary" Width="300" FontSize="24" Foreground="Black"/>
+                    </StackPanel>
+                    </Border>
+
+                        <Border BorderBrush="Black" BorderThickness="2" Margin="0,0,0,0">
+                            <StackPanel>
+                                <Label Content="Lang " FontSize="40" HorizontalAlignment="Center" Foreground="Black"/>
+                            <TextBox x:Name="Lang" Width="300" FontSize="24" Foreground="Black"/>
+                            </StackPanel>
+                        </Border>
+                        <Border BorderBrush="Black" BorderThickness="2" Margin="0,0,0,0">
+                            <StackPanel>
+                                <Label Content="LangLevel " FontSize="40" HorizontalAlignment="Center" Foreground="Black"/>
+                            <ComboBox x:Name="LangLevel" Width="300" FontSize="24" Foreground="Black">
+                                    <ComboBoxItem Content="poczatkujacy"></ComboBoxItem>
+                                    <ComboBoxItem Content="srednio-zaawansowany"></ComboBoxItem>
+                                    <ComboBoxItem Content="zaawansowany"></ComboBoxItem>
+                                </ComboBox>
+                            </StackPanel>
+                        </Border>
+
+                        <Border BorderBrush="Black" BorderThickness="2" Margin="0,0,0,0">
+                        <StackPanel>
+                            <Button Content="Confirm" x:Name="ConfirmProfileBtn" Click="ConfirmProfileBtn_Click" Height="100" FontSize="30" Background="AliceBlue" Foreground="Black"/>
+                        </StackPanel>
+                    </Border>
                 </StackPanel>
+               
             </Grid>
         </Grid>
+
+
     </Grid>
 
 </Window>

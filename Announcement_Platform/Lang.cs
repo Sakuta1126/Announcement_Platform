@@ -7,11 +7,12 @@ using System.Threading.Tasks;
 
 namespace Announcement_Platform
 {
-    public class Company
+    public class Lang
     {
         [AutoIncrement, PrimaryKey]
         public int Id { get; set; }
-        public string CompanyName { get; set; }
-        public string Localization { get; set; }
+        public string Language { get; set; }
+        public string LanguageLevel { get; set; }
+       
     }
 }

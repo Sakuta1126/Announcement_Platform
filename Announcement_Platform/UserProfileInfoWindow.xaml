@@ -1,0 +1,34 @@
+﻿<Window x:Class="Announcement_Platform.UserProfileInfoWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Announcement_Platform"
+        mc:Ignorable="d"
+        Title="UserProfileInfoWindow" Height="1000" Width="1000">
+    <Grid>
+        <StackPanel Orientation="Vertical" HorizontalAlignment="Center" Width="500">
+            <Label Content="User Info" FontSize="36" HorizontalAlignment="Center"></Label>
+            <Label Content="Name" FontSize="23" HorizontalAlignment="Center"></Label>
+            <TextBlock Text="{Binding User.Name}" FontSize="23" FontWeight="Bold" HorizontalAlignment="Center"/>
+            <Label Content="Surname" FontSize="23" HorizontalAlignment="Center"></Label>
+            <TextBlock Text="{Binding User.Surname}" FontSize="23" FontWeight="Bold" HorizontalAlignment="Center"/>
+            <Label Content="Birthdate" FontSize="23" HorizontalAlignment="Center"></Label>
+            <TextBlock Text="{Binding User.BirthDate, StringFormat=' {0:d.M.yyyy}'}" FontSize="23" FontWeight="Bold" HorizontalAlignment="Center"/>
+            <Label Content="Email" FontSize="23" HorizontalAlignment="Center"></Label>
+            <TextBlock Text="{Binding User.Email}" FontSize="23" FontWeight="Bold" HorizontalAlignment="Center"/>
+            <Label Content="PhoneNumber" FontSize="23" HorizontalAlignment="Center"></Label>
+            <TextBlock Text="{Binding User.PhoneNumber}" FontSize="23" FontWeight="Bold" HorizontalAlignment="Center"/>
+            <Label Content="ResidenceAddress" FontSize="23" HorizontalAlignment="Center"></Label>
+            <TextBlock Text="{Binding User.ResidenceAddress}" FontSize="23" FontWeight="Bold" HorizontalAlignment="Center"/>
+            <Label Content="Summary" FontSize="23" HorizontalAlignment="Center"></Label>
+            <TextBlock Text="{Binding User.Summary}" FontSize="23" FontWeight="Bold" HorizontalAlignment="Center"/>
+            <Label Content="PFP" FontSize="23" HorizontalAlignment="Center"></Label>
+            <Image Source="{Binding User.PFP}" Height="200" Width="200"/>
+            <Label Content="Language" FontSize="23" HorizontalAlignment="Center"></Label>
+            <TextBlock Text="{Binding Lang.Language}" FontSize="23" FontWeight="Bold" HorizontalAlignment="Center"/>
+            <Label Content="LanguageLevel" FontSize="23" HorizontalAlignment="Center"></Label>
+            <TextBlock Text="{Binding Lang.LanguageLevel}" FontSize="23" FontWeight="Bold" HorizontalAlignment="Center" />
+        </StackPanel>
+    </Grid>
+</Window>

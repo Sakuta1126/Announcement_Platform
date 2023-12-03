@@ -1,0 +1,94 @@
+﻿<Window x:Class="Announcement_Platform.AddAnnouncementWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Announcement_Platform"
+        mc:Ignorable="d"
+        Title="AddAnnouncementWindow" Height="1080" Width="1920">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+        </Grid.RowDefinitions>
+        <Label Content="Add Announcement" Grid.ColumnSpan="2" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="40"></Label>
+        <Label Grid.Row="1" Grid.Column="0" FontSize="30" Content="PositionName" HorizontalAlignment="Center"></Label>
+        <TextBox Grid.Row="1" Grid.Column="0" VerticalAlignment="Bottom" Height="40" x:Name="PositionName"></TextBox>
+        <Label Grid.Row="1" Grid.Column="1" FontSize="30" Content="PositionLevel" HorizontalAlignment="Center"></Label>
+        <ComboBox Grid.Row="1" Grid.Column="1" VerticalAlignment="Bottom" Height="40" x:Name="PositionLevel">
+            <ComboBoxItem Content="Praktykant/Praktykantka"></ComboBoxItem>
+            <ComboBoxItem Content="Asystent/Asystentka"></ComboBoxItem>
+            <ComboBoxItem Content="Mlodszy Specjalista(Junior)/Mlodsza Specjalistka(Juniorka)"></ComboBoxItem>
+            <ComboBoxItem Content="Specjalista(Mid/Regular)/Specjalistka(Mid/Regular)"></ComboBoxItem>
+            <ComboBoxItem Content=" Starszy Specjalista(Senior)/Starsza Specjalistka(Seniorka)"></ComboBoxItem>
+            <ComboBoxItem Content=" Ekspert/Ekspertka"></ComboBoxItem>
+            <ComboBoxItem Content=" Kierownik Koordynator/Kierowniczka Koordynatorka"></ComboBoxItem>
+            <ComboBoxItem Content=" Menadzer/Menadzerka"></ComboBoxItem>
+            <ComboBoxItem Content=" Dyrektor/Dyrektorka"></ComboBoxItem>
+            <ComboBoxItem Content=" Prezes/Prezeska"></ComboBoxItem>
+            <ComboBoxItem Content=" Pracownik Fizyczny/Pracowniczka Fizyczna"></ComboBoxItem>
+        </ComboBox>
+        <Label Grid.Row="2" Grid.Column="0" FontSize="30" Content="ContractType" HorizontalAlignment="Center"></Label>
+        <ComboBox Grid.Row="2" Grid.Column="0" VerticalAlignment="Bottom" Height="40" x:Name="ContractType">
+            <ComboBoxItem>Umowa o prace</ComboBoxItem>
+            <ComboBoxItem>Umowa o dzielo</ComboBoxItem>
+            <ComboBoxItem>Umowa o zlecenie</ComboBoxItem>
+            <ComboBoxItem>Kontrakt B2B</ComboBoxItem>
+            <ComboBoxItem>Umowa na zastepstwo</ComboBoxItem>
+            <ComboBoxItem>Umowa Agencyjna</ComboBoxItem>
+            <ComboBoxItem>Umowa o prace tymczasowa</ComboBoxItem>
+            <ComboBoxItem>Umowa o staz/praktyki</ComboBoxItem>
+        </ComboBox>
+        <Label Grid.Row="2" Grid.Column="1" FontSize="30" Content="Company" HorizontalAlignment="Center"></Label>
+        <TextBox Grid.Row="2" Grid.Column="1" VerticalAlignment="Bottom" Height="40" x:Name="Company"></TextBox>
+        <Label Grid.Row="3" Grid.Column="0" FontSize="30" Content="Localization" HorizontalAlignment="Center"></Label>
+        <TextBox Grid.Row="3" Grid.Column="0" VerticalAlignment="Bottom" Height="40" x:Name="Localization"></TextBox>
+        <Label Grid.Row="3" Grid.Column="1" FontSize="30" Content="WorkingDimension" HorizontalAlignment="Center"></Label>
+        <ComboBox Grid.Row="3" Grid.Column="1" VerticalAlignment="Bottom" Height="40" x:Name="WorkingDimension">
+            <ComboBoxItem Content="Dodatkowa/Tymczasowa"></ComboBoxItem>
+            <ComboBoxItem Content="Czesc etatu"></ComboBoxItem>
+            <ComboBoxItem Content="Pelen etat"></ComboBoxItem>
+        </ComboBox>
+        <Label Grid.Row="4" Grid.Column="0" FontSize="30" Content="Workingtype" HorizontalAlignment="Center"></Label>
+        <ComboBox Grid.Row="4" Grid.Column="0" VerticalAlignment="Bottom" Height="40" x:Name="Workingtype">
+            <ComboBoxItem>Praca stacjonarna</ComboBoxItem>
+            <ComboBoxItem>Praca hybrydowa</ComboBoxItem>
+            <ComboBoxItem>Praca mobilna</ComboBoxItem>
+            <ComboBoxItem>Praca zdalna</ComboBoxItem>
+        </ComboBox>
+        <Label Grid.Row="4" Grid.Column="1" FontSize="30" Content="Sallary" HorizontalAlignment="Center"></Label>
+        <TextBox Grid.Row="4" Grid.Column="1" VerticalAlignment="Bottom" Height="40" x:Name="Sallary"></TextBox>
+        <Label Grid.Row="5" Grid.Column="0" FontSize="30" Content="WorkingDays" HorizontalAlignment="Center"></Label>
+        <TextBox Grid.Row="5" Grid.Column="0" VerticalAlignment="Bottom" Height="40" x:Name="WorkingDays"></TextBox>
+        <Label Grid.Row="5" Grid.Column="1" FontSize="30" Content="WorkingHours" HorizontalAlignment="Center"></Label>
+        <TextBox Grid.Row="5" Grid.Column="1" VerticalAlignment="Bottom" Height="40" x:Name="WorkingHours"></TextBox>
+        <Label Grid.Row="6" Grid.Column="0" FontSize="30" Content="AnnouncementStart" HorizontalAlignment="Center"></Label>
+        <DatePicker Grid.Row="6" Grid.Column="0" VerticalAlignment="Bottom" Height="40" x:Name="AnnouncementStart"></DatePicker>
+        <Label Grid.Row="6" Grid.Column="1" FontSize="30" Content="AnnouncementEnd" HorizontalAlignment="Center"></Label>
+        <DatePicker Grid.Row="6" Grid.Column="1" VerticalAlignment="Bottom" Height="40" x:Name="AnnouncementEnd"></DatePicker>
+        <Label Grid.Row="7" Grid.Column="0" FontSize="30" Content="Category" HorizontalAlignment="Center"></Label>
+        <TextBox Grid.Row="7" Grid.Column="0" VerticalAlignment="Bottom" Height="40" x:Name="Category"></TextBox>
+        <Label Grid.Row="7" Grid.Column="1" FontSize="30" Content="Duties" HorizontalAlignment="Center"></Label>
+        <TextBox Grid.Row="7" Grid.Column="1" VerticalAlignment="Bottom" Height="40" x:Name="Duties"></TextBox>
+        <Label Grid.Row="8" Grid.Column="0" FontSize="30" Content="Benefits" HorizontalAlignment="Center"></Label>
+        <TextBox Grid.Row="8" Grid.Column="0" VerticalAlignment="Bottom" Height="40" x:Name="Benefits"></TextBox>
+        <Label Grid.Row="8" Grid.Column="1" FontSize="30" Content="AboutCompany" HorizontalAlignment="Center"></Label>
+        <TextBox Grid.Row="8" Grid.Column="1" VerticalAlignment="Bottom" Height="40" x:Name="AboutCompany"></TextBox>
+        <Label Grid.Row="9" Grid.Column="0" FontSize="30" Content="Requirements" HorizontalAlignment="Center" Grid.ColumnSpan="2"></Label>
+        <TextBox Grid.Row="9" Grid.Column="0" VerticalAlignment="Bottom" Height="40" x:Name="Requirements" Grid.ColumnSpan="2"></TextBox>
+        <Button Content="Add" x:Name="AddAnnouncement" Click="AddAnnouncement_Click" Grid.Row="10" Grid.ColumnSpan="2" FontSize="30" Width="400" Height="50"></Button>
+    </Grid>
+</Window>

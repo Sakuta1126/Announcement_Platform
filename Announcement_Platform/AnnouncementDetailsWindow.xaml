@@ -1,0 +1,112 @@
+﻿<Window x:Class="Announcement_Platform.AnnouncementDetailsWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Announcement_Platform"
+        mc:Ignorable="d"
+        Title="AnnouncementDetailsWindow" Height="800" Width="800">
+    <Grid>
+        <StackPanel Orientation="Vertical" HorizontalAlignment="Center" Width="700">
+            <Label Content="Details" FontSize="36" HorizontalAlignment="Center"></Label>
+
+            <!-- Rząd 1 -->
+            <StackPanel Orientation="Horizontal" Margin="0,0,0,20">
+                <StackPanel Orientation="Vertical">
+                    <Label Content="Position Name" FontSize="23" HorizontalAlignment="Center"/>
+                    <TextBlock Text="{Binding PositionName}" FontSize="23" FontWeight="Bold" HorizontalAlignment="Center"/>
+                </StackPanel>
+
+                <StackPanel Orientation="Vertical" Margin="400,0,0,0">
+                    <Label Content="Company" FontSize="23" HorizontalAlignment="Center"/>
+                    <TextBlock Text="{Binding Company}" FontSize="23" FontWeight="Bold" HorizontalAlignment="Center"/>
+                </StackPanel>
+            </StackPanel>
+
+            <!-- Rząd 2 -->
+            <StackPanel Orientation="Horizontal" Margin="0,0,0,20">
+                <StackPanel Orientation="Vertical" Margin="0,0,20,0">
+                    <Label Content="Requirements" FontSize="23" HorizontalAlignment="Center"></Label>
+                    <TextBlock Text="{Binding Requirements}" FontSize="23" FontWeight="Bold" HorizontalAlignment="Center"/>
+                </StackPanel>
+
+                <StackPanel Orientation="Vertical" Margin="390,0,0,0">
+                    <Label Content="Category" FontSize="23" HorizontalAlignment="Center"></Label>
+                    <TextBlock Text="{Binding Category}" FontSize="23" FontWeight="Bold" HorizontalAlignment="Center"/>
+                </StackPanel>
+            </StackPanel>
+
+            <StackPanel Orientation="Horizontal" Margin="0,20,0,0">
+                <StackPanel Orientation="Vertical" >
+                    <Label Content="Benefits" FontSize="23" HorizontalAlignment="Center"></Label>
+                    <TextBlock Text="{Binding Benefits}" FontSize="23" FontWeight="Bold" HorizontalAlignment="Center"/>
+                </StackPanel>
+
+                <StackPanel Orientation="Vertical" Margin="430,0,0,0"  >
+                    <Label Content="About Company" FontSize="23" HorizontalAlignment="Center"></Label>
+                    <TextBlock Text="{Binding AboutCompany}" FontSize="23" FontWeight="Bold" HorizontalAlignment="Center"/>
+                </StackPanel>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" Margin="0,20,0,0">
+                <StackPanel Orientation="Vertical" >
+                    <Label Content="Localization" FontSize="23" HorizontalAlignment="Center"></Label>
+                    <TextBlock Text="{Binding Localization}" FontSize="23" FontWeight="Bold" HorizontalAlignment="Center"/>
+                </StackPanel>
+
+                <StackPanel Orientation="Vertical" Margin="360,0,0,0" >
+                    <Label Content="Working Dimension" FontSize="23" HorizontalAlignment="Center"></Label>
+                    <TextBlock Text="{Binding WorkingDimension}" FontSize="23" FontWeight="Bold" HorizontalAlignment="Center"/>
+                </StackPanel>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" Margin="0,20,0,0">
+                <StackPanel Orientation="Vertical">
+                    <Label Content="Working Type" FontSize="23" HorizontalAlignment="Center"></Label>
+                    <TextBlock Text="{Binding Workingtype}" FontSize="23" FontWeight="Bold" HorizontalAlignment="Center"/>
+                </StackPanel>
+
+                <StackPanel Orientation="Vertical" Margin="420,0,0,0" >
+                    <Label Content="Salary" FontSize="23" HorizontalAlignment="Center"></Label>
+                    <TextBlock Text="{Binding Sallary}" FontSize="23" FontWeight="Bold" HorizontalAlignment="Center"/>
+                </StackPanel>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" Margin="0,20,0,0">
+                <StackPanel Orientation="Vertical" >
+                    <Label Content="Working Days" FontSize="23" HorizontalAlignment="Center"></Label>
+                    <TextBlock Text="{Binding WorkingDays}" FontSize="23" FontWeight="Bold" HorizontalAlignment="Center"/>
+                </StackPanel>
+
+                <StackPanel Orientation="Vertical" Margin="350,0,0,0" >
+                    <Label Content="Working Hours" FontSize="23" HorizontalAlignment="Center"></Label>
+                    <TextBlock Text="{Binding WorkingHours}" FontSize="23" FontWeight="Bold" HorizontalAlignment="Center"/>
+                </StackPanel>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" Margin="0,20,0,0">
+                <StackPanel Orientation="Vertical" >
+                    <Label Content="Announcement Start" FontSize="23" HorizontalAlignment="Center"></Label>
+                    <TextBlock Text="{Binding AnnouncementStart, StringFormat=' {0:d.M.yyyy}'}" FontSize="23" FontWeight="Bold" HorizontalAlignment="Center"/>
+                </StackPanel>
+
+                <StackPanel Orientation="Vertical" Margin="250,0,0,0" >
+                    <Label Content="Announcement End" FontSize="23" HorizontalAlignment="Center"></Label>
+                    <TextBlock Text="{Binding AnnouncementEnd, StringFormat=' {0:d.M.yyyy}'}" FontSize="23" FontWeight="Bold" HorizontalAlignment="Center"/>
+                </StackPanel>
+            </StackPanel>
+            <Button Content="Aplikuj" x:Name="Apply" Click="Apply_Click" FontSize="23" FontWeight="Bold" HorizontalAlignment="Center" Background="Green" Margin="0,20,0,0"/>
+           
+         
+        </StackPanel>
+    </Grid>
+
+
+
+
+
+
+
+
+
+
+
+
+
+</Window>

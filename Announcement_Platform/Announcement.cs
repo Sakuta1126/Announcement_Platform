@@ -14,9 +14,11 @@ namespace Announcement_Platform
         public string PositionName { get; set; }
         public string PositionLevel { get; set; }
         public string ContractType { get; set; }
+        public string Company { get; set; }
+        public string Localization { get; set; }
         public string WorkingDimension { get; set; }
         public string Workingtype { get; set; }
-        public int Sallary { get; set; }
+        public decimal Sallary { get; set; }
         public string WorkingDays { get; set; }
         public string WorkingHours { get; set; }
         public DateTime AnnouncementStart { get; set; }
