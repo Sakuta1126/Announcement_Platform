@@ -27,13 +27,24 @@ namespace Announcement_Platform
 
         private void AddAnnouncement_Click(object sender, RoutedEventArgs e)
         {
-        
+
             if (string.IsNullOrWhiteSpace(PositionName.Text) ||
-                string.IsNullOrWhiteSpace(Company.Text) ||
-                string.IsNullOrWhiteSpace(WorkingDays.Text) ||
-                string.IsNullOrWhiteSpace(Category.Text) ||
-                string.IsNullOrWhiteSpace(Duties.Text) ||
-                string.IsNullOrWhiteSpace(AboutCompany.Text))
+             string.IsNullOrWhiteSpace(PositionLevel.Text) ||
+             string.IsNullOrWhiteSpace(ContractType.Text) ||
+             string.IsNullOrWhiteSpace(Company.Text) ||
+            string.IsNullOrWhiteSpace(Localization.Text) ||
+            string.IsNullOrWhiteSpace(WorkingDimension.Text) ||
+            string.IsNullOrWhiteSpace(Workingtype.Text) ||
+            string.IsNullOrWhiteSpace(Sallary.Text) ||
+            string.IsNullOrWhiteSpace(WorkingDays.Text) ||
+            string.IsNullOrWhiteSpace(WorkingHours.Text) ||
+     AnnouncementStart.SelectedDate == null ||
+     AnnouncementEnd.SelectedDate == null ||
+     string.IsNullOrWhiteSpace(Category.Text) ||
+     string.IsNullOrWhiteSpace(Duties.Text) ||
+     string.IsNullOrWhiteSpace(Benefits.Text) ||
+     string.IsNullOrWhiteSpace(AboutCompany.Text) ||
+     string.IsNullOrWhiteSpace(Requirements.Text))
             {
                 MessageBox.Show("Wszystkie wymagane pola muszą być wypełnione.", "Błąd", MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
@@ -63,8 +74,8 @@ namespace Announcement_Platform
                 return;
             }
 
-            
-            var newAnnouncement = new Announcement
+
+            var newAnnouncement = new 
             {
                 PositionName = PositionName.Text,
                 PositionLevel = (PositionLevel.SelectedItem as ComboBoxItem)?.Content.ToString(),
@@ -82,7 +93,8 @@ namespace Announcement_Platform
                 Duties = Duties.Text,
                 Requirements = Requirements.Text,
                 Benefits = Benefits.Text,
-                AboutCompany = AboutCompany.Text
+                AboutCompany = AboutCompany.Text,
+               
             };
 
 

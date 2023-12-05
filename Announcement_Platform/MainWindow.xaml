@@ -59,15 +59,15 @@
             </Grid.Background>
             <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
                 <Label Content="Login" Foreground="White" FontSize="38" Margin="0,0,0,5"/>
-                <TextBox x:Name="RegisterLoginTextBox" Width="400" Height="30" Margin="0,0,0,10" HorizontalAlignment="Center"/>
+                <TextBox x:Name="RegisterLoginTextBox" Width="400" Height="50" Margin="0,0,0,10" HorizontalAlignment="Center"/>
                 <Label Content="Hasło" Foreground="White" FontSize="38" Margin="0,0,0,5"/>
-                <PasswordBox x:Name="RegisterPasswordBox" Width="400" Height="30" Margin="0,0,0,80" HorizontalAlignment="Center"/>
+                <PasswordBox x:Name="RegisterPasswordBox" Width="400" Height="50" Margin="0,0,0,80" HorizontalAlignment="Center"/>
                 <CheckBox IsChecked="False" x:Name="AdminChoose" Content="Chce byc adminem" FontSize="10" Height="60" HorizontalAlignment="Center" >
                     <CheckBox.LayoutTransform>
                         <ScaleTransform ScaleX="4" ScaleY="4" />
                     </CheckBox.LayoutTransform>
                 </CheckBox>
-                <Button Content="Zarejestruj" x:Name="RegisterBtn" Click="RegisterBtn_Click" Width="200" Height="60" FontSize="38" HorizontalAlignment="Center" Background="Transparent" Visibility="Visible">
+                <Button Content="Zarejestruj" x:Name="RegisterBtn" Click="RegisterBtn_Click" Width="200" Height="80" FontSize="38" HorizontalAlignment="Center" Background="Transparent" Visibility="Visible">
 
                 </Button>
             </StackPanel>
@@ -81,13 +81,13 @@
             </Grid.Background>
             <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
                 <Label Content="Login" Foreground="White" FontSize="38" Margin="0,0,0,5" />
-                <TextBox x:Name="LoginTextBox" Width="400" Height="30" Margin="0,0,0,10" HorizontalAlignment="Center"/>
+                <TextBox x:Name="LoginTextBox" Width="400" Height="50" Margin="0,0,0,10" HorizontalAlignment="Center"/>
                 <Label Content="Hasło" Foreground="White" FontSize="38" Margin="0,0,0,5"/>
-                <PasswordBox x:Name="PasswordBox" Width="400" Height="30" Margin="0,0,0,80" HorizontalAlignment="Center"/>
-                <Button Content="Zaloguj" x:Name="LoginBtn" Click="LoginBtn_Click" Width="200" Height="60" FontSize="38" HorizontalAlignment="Center"/>
+                <PasswordBox x:Name="PasswordBox" Width="400" Height="50" Margin="0,0,0,80" HorizontalAlignment="Center"/>
+                <Button Content="Zaloguj" x:Name="LoginBtn" Click="LoginBtn_Click" Width="200" Height="80" FontSize="38" HorizontalAlignment="Center"/>
             </StackPanel>
         </Grid>
-        <Grid x:Name="MainSiteView"  Visibility="Visible">
+        <Grid x:Name="MainSiteView"  Visibility="Hidden">
 
             <Grid.RowDefinitions>
                 <RowDefinition></RowDefinition>
@@ -99,6 +99,7 @@
                 <RowDefinition></RowDefinition>
                 <RowDefinition></RowDefinition>
             </Grid.RowDefinitions>
+            <Image Source="Sigmowo.png" Grid.Row="2" Grid.RowSpan="3"></Image>
             <Label Content="Announcement_Platform" FontSize="40" Foreground="Black" FontFamily="Georgia" HorizontalAlignment="Left" Grid.Row="0" VerticalAlignment="Top" Margin="20,10,0,0"></Label>
             <StackPanel Orientation="Horizontal" Grid.Row="0" HorizontalAlignment="Right">
 
@@ -171,7 +172,7 @@
                                         <TextBlock Text="Requirements:" Foreground="White" TextAlignment="Center" FontSize="26" />
                                         <TextBlock Text="{Binding Requirements}" Foreground="White" FontWeight="Bold" FontSize="20" TextAlignment="Center" Margin="0,5,0,0" />
 
-                                        <Button Content="Zobacz" x:Name="ViewApplied" Click="ViewApplied_Click" HorizontalAlignment="Center" Margin="0,10,0,0"/>
+                                       
                                         
                                     </StackPanel>
                                 </Border>
@@ -229,7 +230,7 @@
                                         <TextBlock Text="{Binding Requirements}" Foreground="White" FontWeight="Bold" FontSize="20" TextAlignment="Center" Margin="0,5,0,0" />
 
                                         <Button Content="Zobacz" x:Name="ViewDetails" Click="ViewDetails_Click" HorizontalAlignment="Center" Margin="0,10,0,0"/>
-                                        <Button Content="Usun" x:Name="DeleteAnn"  Click="DeleteAnn_Click" HorizontalAlignment="Center" Margin="0,10,0,0" />
+                                        <Button Content="Usun" x:Name="DeleteAnn" Visibility="{Binding RelativeSource={RelativeSource AncestorType={x:Type local:MainWindow}},Path=isvisible}"  Click="DeleteAnn_Click" HorizontalAlignment="Center" Margin="0,10,0,0" />
                                     </StackPanel>
                                 </Border>
                             </Grid>

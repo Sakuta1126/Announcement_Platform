@@ -6,13 +6,13 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace Announcement_Platform
-{
+{ 
     public class Lang
     {
         [AutoIncrement, PrimaryKey]
         public int Id { get; set; }
         public string Language { get; set; }
         public string LanguageLevel { get; set; }
-       
+        public int user_id { get; set; }
     }
 }

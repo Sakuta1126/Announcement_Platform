@@ -11,6 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using Announcement_Platform;
 
 namespace Announcement_Platform
 {
@@ -57,7 +58,9 @@ namespace Announcement_Platform
                     Duties = selectedAnnouncement.Duties,
                     Requirements = selectedAnnouncement.Requirements,
                     Benefits = selectedAnnouncement.Benefits,
-                    AboutCompany = selectedAnnouncement.AboutCompany
+                    AboutCompany = selectedAnnouncement.AboutCompany,
+                    announcement_id = selectedAnnouncement.Id,
+                    user_id = UserStore.LoggedInUserId,
                 };
 
 

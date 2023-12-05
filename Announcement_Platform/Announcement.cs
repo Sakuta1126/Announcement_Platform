@@ -9,7 +9,7 @@ namespace Announcement_Platform
 {
     public class Announcement
     {
-        [AutoIncrement,PrimaryKey]
+        [AutoIncrement, PrimaryKey]
         public int Id { get; set; }
         public string PositionName { get; set; }
         public string PositionLevel { get; set; }
@@ -28,6 +28,7 @@ namespace Announcement_Platform
         public string Requirements { get; set; }
         public string Benefits { get; set; }
         public string AboutCompany { get; set; }
+
 
     }
 }

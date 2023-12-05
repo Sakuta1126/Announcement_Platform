@@ -1,4 +1,5 @@
-﻿using Microsoft.Win32;
+﻿using Announcement_Platform;
+using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -6,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
+using System.Transactions;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -28,18 +30,17 @@ namespace Announcement_Platform
         private DispatcherTimer timer;
         public ObservableCollection<Announcement> Announcements { get; set; } 
         public ObservableCollection<Applied> AppliedAnnouncements { get; set; }
-
+        public Visibility isvisible { get; set; } = Visibility.Hidden;
         public MainWindow()
         {
             InitializeComponent();
-           App.Database.ClearDatabaseAsync();
-
-            Announcements = new ObservableCollection<Announcement>();
+            
+              Announcements = new ObservableCollection<Announcement>();
             AppliedAnnouncements = new ObservableCollection<Applied>();
             YourItemsControl.ItemsSource = Announcements;
             AppliedItems.ItemsSource = AppliedAnnouncements;
       
-            timer = new DispatcherTimer();
+                  timer = new DispatcherTimer();
             timer.Interval = TimeSpan.FromSeconds(11);
             timer.Tick += Timer_Tick;
 
@@ -47,13 +48,13 @@ namespace Announcement_Platform
             timer.Start();
 
            
-            loading.Visibility = Visibility.Hidden;
+            loading.Visibility = Visibility.Visible;
             string gifPath = AppDomain.CurrentDomain.BaseDirectory + "loading.gif";
             var bitmap = new BitmapImage(new Uri(gifPath));
            
             ImageBehavior.SetAnimatedSource(loadingImage, bitmap);
             ImageBehavior.SetRepeatBehavior(loadingImage, System.Windows.Media.Animation.RepeatBehavior.Forever);
-            ImageBehavior.SetAnimationSpeedRatio(loadingImage, 0.1); // Ustaw prędkość animacji na 50%
+            ImageBehavior.SetAnimationSpeedRatio(loadingImage, 0.1); 
             LoadDataAsync();
             
         }
@@ -99,39 +100,43 @@ namespace Announcement_Platform
                
             });
         }
+       
 
         private void RegisterBtn_Click(object sender, RoutedEventArgs e)
         {
 
-       
+
             string login = RegisterLoginTextBox.Text;
             string password = RegisterPasswordBox.Password;
             bool isAdmin = (bool)AdminChoose.IsChecked;
 
-           
+            
             var existingUser = App.Database.GetItemsAsync<Account>().Result.FirstOrDefault(u => u.Login == login);
 
-            if (existingUser == null && RegisterLoginTextBox.Text != "" || RegisterPasswordBox.Password != "")
+            if (string.IsNullOrWhiteSpace(login) || string.IsNullOrWhiteSpace(password))
             {
-              
+                MessageBox.Show("Login i hasło nie mogą być puste.", "Błąd", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+            else if (existingUser == null)
+            {
+                
                 var newUser = new Account { Login = login, Password = password, IsAdmin = isAdmin };
-               
+
                 App.Database.SaveItemAsync(newUser).Wait();
 
                 MessageBox.Show("Rejestracja udana!");
                 RegisterView.Visibility = Visibility.Hidden;
                 MainSiteView.Visibility = Visibility.Visible;
-               
 
-         
+
                 RegisterLoginTextBox.Text = string.Empty;
                 RegisterPasswordBox.Password = string.Empty;
                 AdminChoose.IsChecked = false;
             }
-            else 
+            else
             {
             
-                MessageBox.Show("Uzytkownik o podanym loginie istnieje.");
+                MessageBox.Show("Użytkownik o podanym loginie już istnieje.", "Błąd", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
 
@@ -152,17 +157,20 @@ namespace Announcement_Platform
                     {
                   
                         user.IsLoggedIn = true;
+                        UserStore.SetLoggedInUserId(user.Id);
                         App.Database.SaveItemAsync(user).Wait();
-                        
                         MessageBox.Show("Zalogowano pomyślnie!");
+                   
+                        LoginTextBox.Text = string.Empty;
+                        PasswordBox.Password = string.Empty;
                         LoginView.Visibility = Visibility.Hidden;
                         MainSiteView.Visibility = Visibility.Visible;
                         RegisterNav.Visibility = Visibility.Hidden;
                         LogInNav.Visibility = Visibility.Hidden;
                         ProfileNav.Visibility = Visibility.Visible;
                         LogOutBtn.Visibility = Visibility.Visible;
-                       
-                   
+                        
+
                     }
                     else
                     {
@@ -186,10 +194,10 @@ namespace Announcement_Platform
         {
             List<Announcement> announcements = await App.Database.GetItemsAsync<Announcement>();
 
-            // Wyczyść kolekcję przed dodaniem nowych ogłoszeń
+          
             Announcements.Clear();
 
-            // Dodaj ogłoszenia do kolekcji
+           
             foreach (var announcement in announcements)
             {
                 Announcements.Add(announcement);
@@ -197,14 +205,26 @@ namespace Announcement_Platform
         }
         private async void LoadAppliedAsync()
         {
-            List<Applied> applied = await App.Database.GetItemsAsync<Applied>();
+            
+            List<Applied> allApplied = await App.Database.GetItemsAsync<Applied>();
 
-            AppliedAnnouncements.Clear();
+            var loggedInUser = UserStore.LoggedInUserId;
 
-            // Dodaj ogłoszenia w zakresie aplikacji do kolekcji
-            foreach (var applys in applied)
+
+
+            if (loggedInUser != 0)
             {
-                AppliedAnnouncements.Add(applys);
+             
+                List<Applied> userApplied = allApplied.Where(apply => apply.user_id == loggedInUser).ToList();
+
+               
+                AppliedAnnouncements.Clear();
+
+                
+                foreach (var userApply in userApplied)
+                {
+                    AppliedAnnouncements.Add(userApply);
+                }
             }
         }
         private void Logout()
@@ -227,6 +247,8 @@ namespace Announcement_Platform
                 AnnouncementNav.Visibility= Visibility.Hidden;
                 announcements.Visibility = Visibility.Hidden;
                 MainSiteView.Visibility=Visibility.Visible;
+                Applied.Visibility = Visibility.Hidden;
+                AddAnno.Visibility = Visibility.Hidden;
             }
             else
             {
@@ -237,11 +259,11 @@ namespace Announcement_Platform
 
         private void AnnouncementNav_Click(object sender, RoutedEventArgs e)
         {
+            UpdateAnnoButtonsVisibility();
             LoadAnnouncementsAsync();
             announcements.Visibility = Visibility.Visible;
             MainSiteView.Visibility = Visibility.Visible;
             AppliedAnno.Visibility = Visibility.Hidden;
-            UpdateAnnoButtonsVisibility();
 
 
         }
@@ -260,7 +282,24 @@ namespace Announcement_Platform
 
         private void ConfirmProfileBtn_Click(object sender, RoutedEventArgs e)
         {
-        
+            // Sprawdź, czy użytkownik już wypełnił profil
+            var existingUser = App.Database.GetItemsAsync<User>().Result.FirstOrDefault(u => u.user_id == UserStore.LoggedInUserId);
+
+            if (existingUser != null)
+            {
+                MessageBox.Show("Profil użytkownika został już wypełniony.", "Błąd", MessageBoxButton.OK, MessageBoxImage.Error);
+                Applied.Visibility = Visibility.Visible;
+                AnnouncementNav.Visibility = Visibility.Visible;
+                Profile_Informations.Visibility = Visibility.Hidden;
+                Applied.Visibility = Visibility.Visible;
+                ProfileNav.Visibility = Visibility.Hidden;
+                AnnouncementNav.Visibility = Visibility.Visible;
+                MainSiteView.Visibility = Visibility.Visible;
+                UpdateAddAnnoButtonVisibility();
+                return;
+            }
+
+            // Sprawdź, czy wszystkie pola są wypełnione poprawnie
             if (string.IsNullOrWhiteSpace(Name.Text) ||
                 string.IsNullOrWhiteSpace(Surname.Text) ||
                 string.IsNullOrWhiteSpace(PhoneNumber.Text) ||
@@ -275,14 +314,12 @@ namespace Announcement_Platform
                 return;
             }
 
-           
             if (!Regex.IsMatch(Email.Text, @"^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$"))
             {
                 MessageBox.Show("Nieprawidłowy format adresu email.", "Błąd", MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
             }
 
-            
             if (!Regex.IsMatch(PhoneNumber.Text, @"^[0-9]{9}$"))
             {
                 MessageBox.Show("Nieprawidłowy format numeru telefonu.", "Błąd", MessageBoxButton.OK, MessageBoxImage.Error);
@@ -304,14 +341,17 @@ namespace Announcement_Platform
                 PhoneNumber = int.Parse(PhoneNumber.Text),
                 ResidenceAddress = ResidenceAddress.Text,
                 Summary = Summary.Text,
-                PFP = Photopath.Text
+                PFP = Photopath.Text,
+                user_id = UserStore.LoggedInUserId
             };
 
             App.Database.SaveItemAsync(user);
+
             Lang lang = new Lang
             {
                 Language = Lang.Text,
-                LanguageLevel = (LangLevel.SelectedItem as ComboBoxItem)?.Content.ToString()
+                LanguageLevel = (LangLevel.SelectedItem as ComboBoxItem)?.Content.ToString(),
+                user_id = UserStore.LoggedInUserId
             };
             var userProfileInfo = new UserProfileInfo
             {
@@ -319,20 +359,30 @@ namespace Announcement_Platform
                 Lang = lang
             };
 
-       
             ShowUserProfileInfo(userProfileInfo);
 
-    
             App.Database.SaveItemAsync(lang);
             MessageBox.Show("Pomyślnie dodano użytkownika!");
-            DisplayUserData();
+            Name.Text = string.Empty;
+            Surname.Text = string.Empty;
+            PhoneNumber.Text = string.Empty;
+            ResidenceAddress.Text = string.Empty;
+            BirthDate.SelectedDate = null;
+            Email.Text = string.Empty;
+            Summary.Text = string.Empty;
+            Lang.Text = string.Empty;
+            LangLevel.SelectedIndex = -1;
+            Photopath.Text = string.Empty;
             UpdateAddAnnoButtonVisibility();
+            Applied.Visibility = Visibility.Visible;
+            AnnouncementNav.Visibility = Visibility.Visible;
             Profile_Informations.Visibility = Visibility.Hidden;
             Applied.Visibility = Visibility.Visible;
             ProfileNav.Visibility = Visibility.Hidden;
             AnnouncementNav.Visibility = Visibility.Visible;
             MainSiteView.Visibility = Visibility.Visible;
         }
+
         private void ShowUserProfileInfo(UserProfileInfo userProfileInfo)
         {
         
@@ -367,73 +417,49 @@ namespace Announcement_Platform
                 ProfileImage.Source = new BitmapImage(new Uri(openFileDialog.FileName));
             }
         }
-        private async void DisplayUserData()
-        {
-            var users = await App.Database.GetItemsAsync<User>();
-            var langs = await App.Database.GetItemsAsync<Lang>();
-
-            foreach (var user in users)
-            {
-                StringBuilder userMessage = new StringBuilder();
-                userMessage.AppendLine($"ID: {user.Id}, Name: {user.Name}, Surname: {user.Surname}, Email: {user.Email}, PhoneNumber: {user.PhoneNumber}, PFP: {user.PFP}, ResidenceAddress: {user.ResidenceAddress}");
-
-            
-                var userLangs = langs.Where(lang => lang.Id == user.Id).ToList();
-                if (userLangs.Any())
-                {
-                    userMessage.AppendLine("\nLanguages:");
-                    foreach (var lang in userLangs)
-                    {
-                        userMessage.AppendLine($"- Language: {lang.Language}, Level: {lang.LanguageLevel}");
-                    }
-                }
-
-                
-                MessageBox.Show(userMessage.ToString(), $"Dane użytkownika ID: {user.Id}", MessageBoxButton.OK, MessageBoxImage.Information);
-            }
-        }
+        
         private void UpdateAnnoButtonsVisibility()
         {
+            var loggedInUserId = UserStore.LoggedInUserId;
 
-          
-            var loggedInUser = App.Database.GetItemsAsync<Account>().Result.FirstOrDefault(u => u.IsLoggedIn);
-
+       
+            var loggedInUser = App.Database.GetItemsAsync<Account>().Result.FirstOrDefault(u => u.Id == loggedInUserId);
 
             bool isAdmin = loggedInUser != null && loggedInUser.IsAdmin;
-
-            foreach (var item in YourItemsControl.Items)
+                    MessageBox.Show(isAdmin.ToString());
+           
+           
+            if (loggedInUser != null && loggedInUser.IsAdmin)
             {
-                if (item is FrameworkElement element)
-                {
-                    var viewDetailsButton = element.FindName("ViewDetails") as Button;
-                    var deleteAnnButton = element.FindName("DeleteAnn") as Button;
-
-
-                    if (deleteAnnButton != null)
-                    {
-                        deleteAnnButton.Visibility = isAdmin ? Visibility.Visible : Visibility.Hidden;
-                    }
-                }
+                isvisible = Visibility.Visible;
             }
+            else
+            {
 
-
+                isvisible = Visibility.Hidden;
+            }
+            
         }
-        
+
+
         private void UpdateAddAnnoButtonVisibility()
         {
-         
-          
+            var loggedInUserId = UserStore.LoggedInUserId;
 
-                var loggedInUser = App.Database.GetItemsAsync<Account>().Result.FirstOrDefault(u => u.IsLoggedIn);
+           
+            var loggedInUser = App.Database.GetItemsAsync<Account>().Result.FirstOrDefault(u => u.Id == loggedInUserId);
 
-                bool isAdmin = loggedInUser != null && loggedInUser.IsAdmin;
-
-            
-                AddAnno.Visibility = isAdmin ? Visibility.Visible : Visibility.Hidden;
-         
-            
+            if (loggedInUser != null && loggedInUser.IsAdmin)
+            {
+                AddAnno.Visibility = Visibility.Visible;
+            }
+            else
+            {
+              
+                AddAnno.Visibility = Visibility.Hidden;
+            }
         }
-        private void AddAnno_Click(object sender, RoutedEventArgs e)
+            private void AddAnno_Click(object sender, RoutedEventArgs e)
         {
             AddAnnouncementWindow addAnnouncementWindow = new AddAnnouncementWindow();
 
@@ -470,26 +496,39 @@ namespace Announcement_Platform
 
             Button clickedButton = sender as Button;
 
-            
             Announcement selectedAnnouncement = clickedButton.DataContext as Announcement;
 
             if (selectedAnnouncement != null)
             {
-                
+                // Usuń ogłoszenie z bazy danych
                 App.Database.DeleteItemAsync(selectedAnnouncement);
 
-
+                // Usuń ogłoszenie z kolekcji
                 Announcements.Remove(selectedAnnouncement);
+
+                // Usuń powiązane zgłoszenia (Applied) na podstawie announcement_id
+                DeleteRelatedApplied(selectedAnnouncement.Id);
             }
             else
             {
                 MessageBox.Show("Błąd podczas uzyskiwania informacji o ogłoszeniu.", "Błąd", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
+        private void DeleteRelatedApplied(int announcementId)
+        {
+            // Pobierz zgłoszenia (Applied) na podstawie announcement_id
+            List<Applied> relatedApplied = App.Database.GetItemsAsync<Applied>().Result
+                .Where(applied => applied.announcement_id == announcementId).ToList();
 
-        
+            // Usuń zgłoszenia z bazy danych
+            foreach (var applied in relatedApplied)
+            {
+                App.Database.DeleteItemAsync(applied);
+            }
+        }
 
-     
+
+
 
         private void Applied_Click(object sender, RoutedEventArgs e)
         {
@@ -499,10 +538,7 @@ namespace Announcement_Platform
 
         }
 
-        private void ViewApplied_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
+        
     }
 }
 

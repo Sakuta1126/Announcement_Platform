@@ -8,15 +8,23 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="AccChoose.jpg" />
-    <None Remove="download.jpg" />
-    <None Remove="Projekt.mp4" />
+    <Compile Remove="Images\**" />
+    <EmbeddedResource Remove="Images\**" />
+    <None Remove="Images\**" />
+    <Page Remove="Images\**" />
   </ItemGroup>
 
   <ItemGroup>
-    <Content Include="AccChoose.jpg" />
-    <Content Include="download.jpg" />
+    <None Remove="AccChoose.jpg" />
+    <None Remove="Projekt.mp4" />
+    <None Remove="Sigmowo.png" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Content Include="Projekt.mp4">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Sigmowo.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
   </ItemGroup>

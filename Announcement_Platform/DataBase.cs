@@ -57,7 +57,7 @@ namespace Announcement_Platform
         }
 
         // Wywołaj tę metodę, aby wyczyścić całą bazę danych
-        
+
 
     }
 }
