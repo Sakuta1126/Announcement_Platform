@@ -34,7 +34,7 @@ namespace Announcement_Platform
         public MainWindow()
         {
             InitializeComponent();
-            
+             
               Announcements = new ObservableCollection<Announcement>();
             AppliedAnnouncements = new ObservableCollection<Applied>();
             YourItemsControl.ItemsSource = Announcements;
@@ -259,8 +259,8 @@ namespace Announcement_Platform
 
         private void AnnouncementNav_Click(object sender, RoutedEventArgs e)
         {
-            UpdateAnnoButtonsVisibility();
             LoadAnnouncementsAsync();
+            UpdateAnnoButtonsVisibility();
             announcements.Visibility = Visibility.Visible;
             MainSiteView.Visibility = Visibility.Visible;
             AppliedAnno.Visibility = Visibility.Hidden;

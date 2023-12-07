@@ -25,7 +25,7 @@ namespace Announcement_Platform
             InitializeComponent();
         }
 
-        private void AddAnnouncement_Click(object sender, RoutedEventArgs e)
+        private async void AddAnnouncement_Click(object sender, RoutedEventArgs e)
         {
 
             if (string.IsNullOrWhiteSpace(PositionName.Text) ||
@@ -75,7 +75,7 @@ namespace Announcement_Platform
             }
 
 
-            var newAnnouncement = new 
+            var newAnnouncement = new Announcement()
             {
                 PositionName = PositionName.Text,
                 PositionLevel = (PositionLevel.SelectedItem as ComboBoxItem)?.Content.ToString(),

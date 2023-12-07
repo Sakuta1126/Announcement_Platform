@@ -29,17 +29,17 @@
         <TextBox Grid.Row="1" Grid.Column="0" VerticalAlignment="Bottom" Height="40" x:Name="PositionName"></TextBox>
         <Label Grid.Row="1" Grid.Column="1" FontSize="30" Content="PositionLevel" HorizontalAlignment="Center"></Label>
         <ComboBox Grid.Row="1" Grid.Column="1" VerticalAlignment="Bottom" Height="40" x:Name="PositionLevel">
-            <ComboBoxItem Content="Praktykant/Praktykantka"></ComboBoxItem>
-            <ComboBoxItem Content="Asystent/Asystentka"></ComboBoxItem>
-            <ComboBoxItem Content="Mlodszy Specjalista(Junior)/Mlodsza Specjalistka(Juniorka)"></ComboBoxItem>
-            <ComboBoxItem Content="Specjalista(Mid/Regular)/Specjalistka(Mid/Regular)"></ComboBoxItem>
-            <ComboBoxItem Content=" Starszy Specjalista(Senior)/Starsza Specjalistka(Seniorka)"></ComboBoxItem>
-            <ComboBoxItem Content=" Ekspert/Ekspertka"></ComboBoxItem>
-            <ComboBoxItem Content=" Kierownik Koordynator/Kierowniczka Koordynatorka"></ComboBoxItem>
-            <ComboBoxItem Content=" Menadzer/Menadzerka"></ComboBoxItem>
-            <ComboBoxItem Content=" Dyrektor/Dyrektorka"></ComboBoxItem>
-            <ComboBoxItem Content=" Prezes/Prezeska"></ComboBoxItem>
-            <ComboBoxItem Content=" Pracownik Fizyczny/Pracowniczka Fizyczna"></ComboBoxItem>
+            <ComboBoxItem>Praktykant/Praktykantka</ComboBoxItem>
+            <ComboBoxItem>Asystent/Asystentka</ComboBoxItem>
+            <ComboBoxItem>Mlodszy Specjalista(Junior)/Mlodsza Specjalistka(Juniorka)</ComboBoxItem>
+            <ComboBoxItem>Specjalista(Mid/Regular)/Specjalistka(Mid/Regular)</ComboBoxItem>
+            <ComboBoxItem>Starszy Specjalista(Senior)/Starsza Specjalistka(Seniorka)</ComboBoxItem>
+            <ComboBoxItem> Ekspert/Ekspertka</ComboBoxItem>
+            <ComboBoxItem>Kierownik Koordynator/Kierowniczka Koordynatorka</ComboBoxItem>
+            <ComboBoxItem>Menadzer/Menadzerka</ComboBoxItem>
+            <ComboBoxItem>Dyrektor/Dyrektorka</ComboBoxItem>
+            <ComboBoxItem>Prezes/Prezeska</ComboBoxItem>
+            <ComboBoxItem>Pracownik Fizyczny/Pracowniczka Fizyczna</ComboBoxItem>
         </ComboBox>
         <Label Grid.Row="2" Grid.Column="0" FontSize="30" Content="ContractType" HorizontalAlignment="Center"></Label>
         <ComboBox Grid.Row="2" Grid.Column="0" VerticalAlignment="Bottom" Height="40" x:Name="ContractType">
