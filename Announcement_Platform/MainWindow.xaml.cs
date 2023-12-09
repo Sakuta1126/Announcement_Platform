@@ -127,7 +127,7 @@ namespace Announcement_Platform
                 MessageBox.Show("Rejestracja udana!");
                 RegisterView.Visibility = Visibility.Hidden;
                 MainSiteView.Visibility = Visibility.Visible;
-
+                
 
                 RegisterLoginTextBox.Text = string.Empty;
                 RegisterPasswordBox.Password = string.Empty;
@@ -264,7 +264,7 @@ namespace Announcement_Platform
             announcements.Visibility = Visibility.Visible;
             MainSiteView.Visibility = Visibility.Visible;
             AppliedAnno.Visibility = Visibility.Hidden;
-
+            logo.Visibility = Visibility.Hidden;
 
         }
 
@@ -299,7 +299,7 @@ namespace Announcement_Platform
                 return;
             }
 
-            // Sprawdź, czy wszystkie pola są wypełnione poprawnie
+       
             if (string.IsNullOrWhiteSpace(Name.Text) ||
                 string.IsNullOrWhiteSpace(Surname.Text) ||
                 string.IsNullOrWhiteSpace(PhoneNumber.Text) ||
@@ -500,13 +500,13 @@ namespace Announcement_Platform
 
             if (selectedAnnouncement != null)
             {
-                // Usuń ogłoszenie z bazy danych
+              
                 App.Database.DeleteItemAsync(selectedAnnouncement);
 
-                // Usuń ogłoszenie z kolekcji
+               
                 Announcements.Remove(selectedAnnouncement);
 
-                // Usuń powiązane zgłoszenia (Applied) na podstawie announcement_id
+              
                 DeleteRelatedApplied(selectedAnnouncement.Id);
             }
             else
@@ -516,29 +516,88 @@ namespace Announcement_Platform
         }
         private void DeleteRelatedApplied(int announcementId)
         {
-            // Pobierz zgłoszenia (Applied) na podstawie announcement_id
+         
             List<Applied> relatedApplied = App.Database.GetItemsAsync<Applied>().Result
                 .Where(applied => applied.announcement_id == announcementId).ToList();
 
-            // Usuń zgłoszenia z bazy danych
+           
             foreach (var applied in relatedApplied)
             {
                 App.Database.DeleteItemAsync(applied);
             }
         }
 
+        private void Search_Click(object sender, RoutedEventArgs e)
+        {
+           
+            string searchText = searchbox.Text.ToLower();
 
+          
+            string selectedLevel = GetSelectedComboBoxValue(PositionLevel);
+            string selectedContract = GetSelectedComboBoxValue(ContractType);
+            string selectedWorkingType = GetSelectedComboBoxValue(Workingtype);
+            string selectedWorkingDimension = GetSelectedComboBoxValue(WorkingDimension);
+
+           
+            var announcements = Announcements.ToList();
+
+           
+            var filteredAnnouncements = announcements.Where(ann =>
+                (string.IsNullOrEmpty(searchText) || ann.PositionName.ToLower().Contains(searchText)) &&
+                (string.IsNullOrEmpty(selectedLevel) || ann.PositionLevel.ToLower() == selectedLevel) &&
+                (string.IsNullOrEmpty(selectedContract) || ann.ContractType.ToLower() == selectedContract) &&
+                (string.IsNullOrEmpty(selectedWorkingType) || ann.Workingtype.ToLower() == selectedWorkingType) &&
+                (string.IsNullOrEmpty(selectedWorkingDimension) || ann.WorkingDimension.ToLower() == selectedWorkingDimension)
+            ).ToList();
+
+          
+            YourItemsControl.ItemsSource = filteredAnnouncements;
+        }
+
+        private string GetSelectedComboBoxValue(ComboBox comboBox)
+        {
+          
+            var selectedItem = comboBox.SelectedItem as ComboBoxItem;
+            return selectedItem?.Content?.ToString()?.ToLower() ?? string.Empty;
+        }
+        private void Clear_Click(object sender, RoutedEventArgs e)
+        {
+           
+            searchbox.Text = "";
+
+           
+            ClearComboBoxes();
+
+          
+            YourItemsControl.ItemsSource = Announcements;
+        }
+
+        private void ClearComboBoxes()
+        {
+         
+            ClearComboBox(ContractType);
+            ClearComboBox(PositionLevel);
+            ClearComboBox(Workingtype);
+            ClearComboBox(WorkingDimension);
+        }
+
+        private void ClearComboBox(ComboBox comboBox)
+        {
+         
+            comboBox.SelectedIndex = -1;
+        }
 
 
         private void Applied_Click(object sender, RoutedEventArgs e)
         {
             AppliedAnno.Visibility = Visibility.Visible;
+            logo.Visibility = Visibility.Hidden;
             announcements.Visibility = Visibility.Hidden;
             LoadAppliedAsync();
 
         }
 
-        
+       
     }
 }
 

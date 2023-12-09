@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Announcement_Platform"
         mc:Ignorable="d"
-        Title="AnnouncementDetailsWindow" Height="800" Width="800">
+        Title="AnnouncementDetailsWindow" Height="1000" Width="800">
     <Grid>
         <StackPanel Orientation="Vertical" HorizontalAlignment="Center" Width="700">
             <Label Content="Details" FontSize="36" HorizontalAlignment="Center"></Label>
@@ -90,6 +90,25 @@
                     <Label Content="Announcement End" FontSize="23" HorizontalAlignment="Center"></Label>
                     <TextBlock Text="{Binding AnnouncementEnd, StringFormat=' {0:d.M.yyyy}'}" FontSize="23" FontWeight="Bold" HorizontalAlignment="Center"/>
                 </StackPanel>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" Margin="0,20,0,0">
+                <StackPanel Orientation="Vertical" >
+                    <Label Content="Contract Type" FontSize="23" HorizontalAlignment="Center"></Label>
+                    <TextBlock Text="{Binding ContractType}" FontSize="23" FontWeight="Bold" HorizontalAlignment="Center"/>
+                </StackPanel>
+
+                <StackPanel Orientation="Vertical" Margin="400,0,0,0" >
+                    <Label Content="Duties" FontSize="23" HorizontalAlignment="Center"></Label>
+                    <TextBlock Text="{Binding Duties}" FontSize="23" FontWeight="Bold" HorizontalAlignment="Center"/>
+                </StackPanel>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" Margin="0,20,0,0">
+                <StackPanel Orientation="Vertical" Margin="200,0,0,0" >
+                    <Label Content="Position Level" FontSize="23" HorizontalAlignment="Center"></Label>
+                    <TextBlock Text="{Binding PositionLevel}" FontSize="23" FontWeight="Bold" HorizontalAlignment="Center"/>
+                </StackPanel>
+
+                
             </StackPanel>
             <Button Content="Aplikuj" x:Name="Apply" Click="Apply_Click" FontSize="23" FontWeight="Bold" HorizontalAlignment="Center" Background="Green" Margin="0,20,0,0"/>
            

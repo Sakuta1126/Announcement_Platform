@@ -99,7 +99,7 @@
                 <RowDefinition></RowDefinition>
                 <RowDefinition></RowDefinition>
             </Grid.RowDefinitions>
-            <!--<Image Source="Sigmowo.png" Grid.Row="2" Grid.RowSpan="3"></Image>-->
+            <Image Source="Sigmowo.png" Grid.Row="2" Grid.RowSpan="3" x:Name="logo"></Image>
             <Label Content="Announcement_Platform" FontSize="40" Foreground="Black" FontFamily="Georgia" HorizontalAlignment="Left" Grid.Row="0" VerticalAlignment="Top" Margin="20,10,0,0"></Label>
             <StackPanel Orientation="Horizontal" Grid.Row="0" HorizontalAlignment="Right">
 
@@ -195,25 +195,52 @@
                 <RowDefinition></RowDefinition>
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="400"></ColumnDefinition>
+                <ColumnDefinition Width="600"></ColumnDefinition>
                 <ColumnDefinition></ColumnDefinition>
             </Grid.ColumnDefinitions>
            <Label Content="Announcements" Grid.Column="1" x:Name="anc" FontSize="40" Foreground="Black" FontFamily="Georgia" HorizontalAlignment="Center" Grid.Row="1" VerticalAlignment="Center" Margin="20,10,0,0" ></Label>
             <StackPanel Grid.Row="2" Grid.Column="0" Orientation="Vertical" Grid.RowSpan="10">
                 <TextBox Text="Search..." FontSize="30" x:Name="searchbox" ></TextBox>
+                <Label Content="Position" FontSize="30" Foreground="Black" HorizontalAlignment="Center"></Label>
+                <ComboBox Grid.Row="1" Grid.Column="1" VerticalAlignment="Bottom" Height="40" x:Name="PositionLevel">
+                    <ComboBoxItem>Praktykant/Praktykantka</ComboBoxItem>
+                    <ComboBoxItem>Asystent/Asystentka</ComboBoxItem>
+                    <ComboBoxItem>Mlodszy Specjalista(Junior)/Mlodsza Specjalistka(Juniorka)</ComboBoxItem>
+                    <ComboBoxItem>Specjalista(Mid/Regular)/Specjalistka(Mid/Regular)</ComboBoxItem>
+                    <ComboBoxItem>Starszy Specjalista(Senior)/Starsza Specjalistka(Seniorka)</ComboBoxItem>
+                    <ComboBoxItem>Ekspert/Ekspertka</ComboBoxItem>
+                    <ComboBoxItem>Kierownik Koordynator/Kierowniczka Koordynatorka</ComboBoxItem>
+                    <ComboBoxItem>Menadzer/Menadzerka</ComboBoxItem>
+                    <ComboBoxItem>Dyrektor/Dyrektorka</ComboBoxItem>
+                    <ComboBoxItem>Prezes/Prezeska</ComboBoxItem>
+                    <ComboBoxItem>Pracownik Fizyczny/Pracowniczka Fizyczna</ComboBoxItem>
+                </ComboBox>
+                <Label Content="Contract type" FontSize="30" Foreground="Black" HorizontalAlignment="Center"></Label>
+                <ComboBox Grid.Row="2" Grid.Column="0" VerticalAlignment="Bottom" Height="40" x:Name="ContractType">
+                    <ComboBoxItem>Umowa o prace</ComboBoxItem>
+                    <ComboBoxItem>Umowa o dzielo</ComboBoxItem>
+                    <ComboBoxItem>Umowa o zlecenie</ComboBoxItem>
+                    <ComboBoxItem>Kontrakt B2B</ComboBoxItem>
+                    <ComboBoxItem>Umowa na zastepstwo</ComboBoxItem>
+                    <ComboBoxItem>Umowa Agencyjna</ComboBoxItem>
+                    <ComboBoxItem>Umowa o prace tymczasowa</ComboBoxItem>
+                    <ComboBoxItem>Umowa o staz/praktyki</ComboBoxItem>
+                </ComboBox>
                 <Label Content="Working type" FontSize="30" Foreground="Black" HorizontalAlignment="Center"></Label>
-                <RadioButton GroupName="working" FontSize="25" HorizontalAlignment="Center">Praca stacjonarna</RadioButton>
-                <RadioButton GroupName="working" FontSize="25" HorizontalAlignment="Center">Praca mobilna</RadioButton>
-                <RadioButton GroupName="working" FontSize="25" HorizontalAlignment="Center" >Praca zdalna</RadioButton>
-                <RadioButton GroupName="working" FontSize="25" HorizontalAlignment="Center">Praca hybrydowa</RadioButton>
-                <Label Content="Working type" FontSize="30" Foreground="Black" HorizontalAlignment="Center"></Label>
-                <RadioButton GroupName="Level" FontSize="25" HorizontalAlignment="Center">Praktykant/Praktykantka</RadioButton>
-                <RadioButton GroupName="Level" FontSize="25" HorizontalAlignment="Center">Asystent/Asystentka</RadioButton>
-                <RadioButton GroupName="Level" FontSize="20" HorizontalAlignment="Center">Mlodszy Specjalista/Mlodsza Specjalistka</RadioButton>
-                <RadioButton GroupName="Level" FontSize="20" HorizontalAlignment="Center">Starszy Specjalista/Starsza Specjalistka</RadioButton>
-                <RadioButton GroupName="Level" FontSize="25" HorizontalAlignment="Center">Ekspert/Ekspertka</RadioButton>
-                <RadioButton GroupName="Level" FontSize="20" HorizontalAlignment="Center">Kierownik Koordynator/Kierowniczka Koordynatorka</RadioButton>
-                <RadioButton GroupName="Level" FontSize="25" HorizontalAlignment="Center">Praktykant/Praktykantka</RadioButton>
+                <ComboBox Grid.Row="4" Grid.Column="0" VerticalAlignment="Bottom" Height="40" x:Name="Workingtype">
+                    <ComboBoxItem>Praca stacjonarna</ComboBoxItem>
+                    <ComboBoxItem>Praca hybrydowa</ComboBoxItem>
+                    <ComboBoxItem>Praca mobilna</ComboBoxItem>
+                    <ComboBoxItem>Praca zdalna</ComboBoxItem>
+                </ComboBox>
+                <Label Content="Working Dimension" FontSize="30" Foreground="Black" HorizontalAlignment="Center"></Label>
+                <ComboBox Grid.Row="3" Grid.Column="1" VerticalAlignment="Bottom" Height="40" x:Name="WorkingDimension">
+                    <ComboBoxItem>Dodatkowa/Tymczasowa</ComboBoxItem>
+                    <ComboBoxItem >Czesc etatu</ComboBoxItem>
+                    <ComboBoxItem >Pelen etat</ComboBoxItem>
+                </ComboBox>
+                <Button Content="Search" x:Name="Search" Click="Search_Click" Background="Transparent" Foreground="Black"></Button>
+                <Button Content="Clear" x:Name="Clear" Click="Clear_Click" Background="Transparent" Foreground="Black"></Button>
             </StackPanel>
 
             <ScrollViewer Grid.Row="2" Grid.RowSpan="6" Grid.Column="1" BorderBrush="DarkSlateGray" BorderThickness="2" VerticalScrollBarVisibility="Auto">
@@ -238,8 +265,8 @@
                               
                                 <Border Grid.Column="1" Margin="10" Background="Purple" CornerRadius="10">
                                     <StackPanel>
-                                        <TextBlock Text="Company:" Foreground="White" TextAlignment="Center" FontSize="26" />
-                                        <TextBlock Text="{Binding Company}" Foreground="White" FontWeight="Bold" FontSize="20" TextAlignment="Center" Margin="0,5,0,0" />
+                                        <TextBlock Text="Position Level:" Foreground="White" TextAlignment="Center" FontSize="26" />
+                                        <TextBlock Text="{Binding PositionLevel}" Foreground="White" FontWeight="Bold" FontSize="20" TextAlignment="Center" Margin="0,5,0,0" />
 
                                    
                                         <TextBlock Text="Category:" Foreground="White" TextAlignment="Center" FontSize="26" />

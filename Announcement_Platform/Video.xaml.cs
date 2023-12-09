@@ -24,12 +24,12 @@ namespace Announcement_Platform
             InitializeComponent();
             VideoControl.Source = new Uri(videoPath, UriKind.RelativeOrAbsolute);
 
-            // Odtwórz film po otwarciu okna
+         
             VideoControl.Play();    
         }
         private void VideoControl_MediaEnded(object sender, RoutedEventArgs e)
         {
-            // Zamknij okno po zakończeniu filmu
+           
             Close();
         }
     }
