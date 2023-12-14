@@ -53,10 +53,10 @@ namespace Announcement_Platform
             await _database.CreateTableAsync<Applied>();
 
 
-            // Powtórz powyższe kroki dla innych tabel, jeśli masz więcej niż jedną tabelę w bazie danych
+           
         }
 
-        // Wywołaj tę metodę, aby wyczyścić całą bazę danych
+      
 
 
     }

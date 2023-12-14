@@ -403,6 +403,7 @@ namespace Announcement_Platform
         private void LogOutBtn_Click(object sender, RoutedEventArgs e)
         {
             Logout();
+            logo.Visibility = Visibility.Visible;
         }
 
         private void ChooseImageBtn_Click(object sender, RoutedEventArgs e)
