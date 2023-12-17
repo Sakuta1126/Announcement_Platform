@@ -36,35 +36,35 @@
                 </StackPanel>
             </StackPanel>
 
-            <StackPanel Orientation="Horizontal" Margin="0,20,0,0">
+            <StackPanel Orientation="Horizontal" Margin="30,20,0,0">
                 <StackPanel Orientation="Vertical" >
                     <Label Content="Benefits" FontSize="23" HorizontalAlignment="Center"></Label>
                     <TextBlock Text="{Binding Benefits}" FontSize="23" FontWeight="Bold" HorizontalAlignment="Center"/>
                 </StackPanel>
 
-                <StackPanel Orientation="Vertical" Margin="430,0,0,0"  >
+                <StackPanel Orientation="Vertical" Margin="400,0,0,0"  >
                     <Label Content="About Company" FontSize="23" HorizontalAlignment="Center"></Label>
                     <TextBlock Text="{Binding AboutCompany}" FontSize="23" FontWeight="Bold" HorizontalAlignment="Center"/>
                 </StackPanel>
             </StackPanel>
-            <StackPanel Orientation="Horizontal" Margin="0,20,0,0">
+            <StackPanel Orientation="Horizontal" Margin="10,20,0,0">
                 <StackPanel Orientation="Vertical" >
                     <Label Content="Localization" FontSize="23" HorizontalAlignment="Center"></Label>
                     <TextBlock Text="{Binding Localization}" FontSize="23" FontWeight="Bold" HorizontalAlignment="Center"/>
                 </StackPanel>
 
-                <StackPanel Orientation="Vertical" Margin="360,0,0,0" >
+                <StackPanel Orientation="Vertical" Margin="350,0,0,0" >
                     <Label Content="Working Dimension" FontSize="23" HorizontalAlignment="Center"></Label>
                     <TextBlock Text="{Binding WorkingDimension}" FontSize="23" FontWeight="Bold" HorizontalAlignment="Center"/>
                 </StackPanel>
             </StackPanel>
-            <StackPanel Orientation="Horizontal" Margin="0,20,0,0">
+            <StackPanel Orientation="Horizontal" Margin="-10,20,0,0">
                 <StackPanel Orientation="Vertical">
                     <Label Content="Working Type" FontSize="23" HorizontalAlignment="Center"></Label>
                     <TextBlock Text="{Binding Workingtype}" FontSize="23" FontWeight="Bold" HorizontalAlignment="Center"/>
                 </StackPanel>
 
-                <StackPanel Orientation="Vertical" Margin="420,0,0,0" >
+                <StackPanel Orientation="Vertical" Margin="390,0,0,0" >
                     <Label Content="Salary" FontSize="23" HorizontalAlignment="Center"></Label>
                     <TextBlock Text="{Binding Sallary}" FontSize="23" FontWeight="Bold" HorizontalAlignment="Center"/>
                 </StackPanel>
@@ -75,18 +75,18 @@
                     <TextBlock Text="{Binding WorkingDays}" FontSize="23" FontWeight="Bold" HorizontalAlignment="Center"/>
                 </StackPanel>
 
-                <StackPanel Orientation="Vertical" Margin="350,0,0,0" >
+                <StackPanel Orientation="Vertical" Margin="370,0,0,0" >
                     <Label Content="Working Hours" FontSize="23" HorizontalAlignment="Center"></Label>
                     <TextBlock Text="{Binding WorkingHours}" FontSize="23" FontWeight="Bold" HorizontalAlignment="Center"/>
                 </StackPanel>
             </StackPanel>
-            <StackPanel Orientation="Horizontal" Margin="0,20,0,0">
+            <StackPanel Orientation="Horizontal" Margin="-20,20,0,0">
                 <StackPanel Orientation="Vertical" >
                     <Label Content="Announcement Start" FontSize="23" HorizontalAlignment="Center"></Label>
                     <TextBlock Text="{Binding AnnouncementStart, StringFormat=' {0:d.M.yyyy}'}" FontSize="23" FontWeight="Bold" HorizontalAlignment="Center"/>
                 </StackPanel>
 
-                <StackPanel Orientation="Vertical" Margin="250,0,0,0" >
+                <StackPanel Orientation="Vertical" Margin="290,0,0,0" >
                     <Label Content="Announcement End" FontSize="23" HorizontalAlignment="Center"></Label>
                     <TextBlock Text="{Binding AnnouncementEnd, StringFormat=' {0:d.M.yyyy}'}" FontSize="23" FontWeight="Bold" HorizontalAlignment="Center"/>
                 </StackPanel>
@@ -103,7 +103,7 @@
                 </StackPanel>
             </StackPanel>
             <StackPanel Orientation="Horizontal" Margin="0,20,0,0">
-                <StackPanel Orientation="Vertical" Margin="200,0,0,0" >
+                <StackPanel Orientation="Vertical" Margin="50,0,0,0" >
                     <Label Content="Position Level" FontSize="23" HorizontalAlignment="Center"></Label>
                     <TextBlock Text="{Binding PositionLevel}" FontSize="23" FontWeight="Bold" HorizontalAlignment="Center"/>
                 </StackPanel>
